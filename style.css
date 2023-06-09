@@ -1,0 +1,19 @@
+body{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    min-height: 100vh;
+}
+
+.node_row{
+    display: flex;
+    gap: 15px;
+}
+
+.node_el{
+    padding: 10px;
+
+    background-color: red;
+
+}
