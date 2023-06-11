@@ -1,6 +1,3 @@
-import { Grid, Node } from "./game_mechanics/grid.js";
-import { Player } from "./game_mechanics/player.js";
-
 const a = new Grid([5, 5]);
 
 Grid.grid_feald.forEach(node_row => {
