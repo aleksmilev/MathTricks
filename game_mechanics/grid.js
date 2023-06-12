@@ -1,4 +1,4 @@
-export class Node{
+class Node{
     x_axis;
     y_axis;
     value;
@@ -14,10 +14,13 @@ export class Node{
 
     set_owner(new_owner){
         this.owner = new_owner;
+
+        document.getElementById(new_owner.get_position()).style.background = new_owner.color;
+
     }
 }
 
-export class Grid{
+class Grid{
     static grid_feald = new Array();
 
     static create_node_row(){
@@ -31,6 +34,7 @@ export class Grid{
         const node_el = document.createElement("h1");
         node_el.classList.add("node_el");
         node_el.innerText = node.value;
+        node_el.id = `[${node.x_axis},${node.y_axis}]`;
 
         node_row.appendChild(node_el);
     }
@@ -45,8 +49,12 @@ export class Grid{
         for(let i = 0; i < dimensions[0]; i++){
             Grid.grid_feald.push(new Array());
 
+            let curent_row = Grid.create_node_row();
+
             for(let j = 0; j < dimensions[1]; j++){
-                Grid.grid_feald[i].push(new Node([dimensions[0], dimensions[1]], "test"));
+                Grid.grid_feald[i].push(new Node([i,j], "111"));
+
+                Grid.create_node(Grid.grid_feald[i][j], curent_row);
             }
         }
     }
