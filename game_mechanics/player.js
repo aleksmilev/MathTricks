@@ -30,15 +30,18 @@ class Player{
         let available_moves = new Array();
         let posible_moves = [[-1, 0, 1], [-1, 0, 1]];
 
-        for (let i = 0 ; i != posible_moves[0].length; i++) {
-            for (let j = 0 ; j != posible_moves[1].length; j++) {
+        posible_moves[0].forEach(x => {
+            posible_moves[1].forEach(y => {
                 try{
-                    if(Grid.grid_feald[this.x_position + i][this.y_position + j].owner != null){
-                        available_moves.add(Grid.grid_feald[this.x_position + i][this.y_position + j]);
+                    //console.log(`Check ${x},${y} : ${Grid.grid_feald[this.x_position + x][this.y_position + y].owner == null}`);
+                
+                    if(Grid.grid_feald[this.x_position + x][this.y_position + y].owner == null){
+                        available_moves.push(Grid.grid_feald[this.x_position + x][this.y_position + y]);
                     }
-                }catch{}
-            }
-        }
+                }
+                catch{}
+            });
+        });
 
         return available_moves;
     }

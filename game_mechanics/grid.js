@@ -16,7 +16,20 @@ class Node{
         this.owner = new_owner;
 
         document.getElementById(new_owner.get_position()).style.background = new_owner.color;
+    }
 
+    mark_node(){
+        let html_node = document.getElementById(this.get_position());
+        
+        html_node.style.background = "#808080";
+        html_node.addEventListener("click", () => {
+            console.log(this.get_position());
+        });
+        
+    }
+
+    get_position(){
+        return `[${this.x_axis},${this.y_axis}]`;  
     }
 }
 
