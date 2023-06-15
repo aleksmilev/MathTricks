@@ -1,4 +1,8 @@
 class Player{
+    static player_turn_index = 0;
+    static all_players = new Array();
+    static player_turn = Player.all_players[Player.player_turn_index % (Player.all_players.length + 1)];
+
     x_position;
     y_position;
 
@@ -13,6 +17,7 @@ class Player{
         this.color = color
 
         Grid.grid_feald[this.x_position][this.y_position].set_owner(this);
+        Player.all_players.push(this);
     }
 
     get_position(){
@@ -20,10 +25,17 @@ class Player{
     }
 
     move_player(new_position){
+        let old_position = JSON.parse(this.get_position());
+
         this.x_position = new_position[0];
         this.y_position = new_position[1];
 
-        Grid.grid_feald[new_x_position][new_y_position].owner = this;
+        Grid.grid_feald[this.x_position][this.y_position].set_owner(this);
+
+        const all_noes = document.querySelectorAll(".node_el");
+        all_noes.forEach(node => {
+            node.removeEventListener("click", Node.handleMove);
+        });
     }
 
     get_available_moves(){

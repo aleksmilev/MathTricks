@@ -1,4 +1,10 @@
 class Node{
+    static handleMove = () => {
+        let player = Player.player_turn;
+
+        player.move_player(JSON.parse(this.get_position()));
+    };
+
     x_axis;
     y_axis;
     value;
@@ -22,10 +28,7 @@ class Node{
         let html_node = document.getElementById(this.get_position());
         
         html_node.style.background = "#808080";
-        html_node.addEventListener("click", () => {
-            console.log(this.get_position());
-        });
-        
+        html_node.addEventListener("click", Node.handleMove);
     }
 
     get_position(){
